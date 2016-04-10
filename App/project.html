@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+
+		<meta charset="utf-8">
+
+		<title> Network Structure of the German economy </title>
+
+		<div id = "header"><h1 style="color:white;">Reveal the structure of the german economy </h1></div>
+
+		<!-- Load D3 -->	
+		<script type="text/javascript" src="d3/d3.v3.js"></script>
+		<script type='text/javascript' src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"> </script>
+
+		<!-- Load math library -->		
+		<script type="text/x-mathjax-config"> MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
+		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+		<!-- Load graph data and centrality data -->
+		<script type="text/javascript" src="data/graph_data.js"></script>
+
+		<!-- Styling -->
+		<style type="text/css">
+
+		#header  {
+			margin: 2cm 4cm 0.2cm 1cm;
+			background-image: url("background.png");
+			padding-top: 5px;
+			padding-left: 0px;
+			padding-right: 15px;
+			font-size: %;
+			text-align:left;
+			width:1000px;
+			text-align:left;
+			float:center;
+       	}
+
+		body {
+			background: #FFF;
+			color: black;
+			font-family: "HelveticaNeue-Light"; 
+			font-size: 18px;
+			width: 1200px;
+		}
+    		.content {
+    		width: 1000 px;
+    		display: block;
+    		margin: 400px ;
+    		padding-top: 1000px;
+    		}
+
+		p  {
+   			margin: 2cm 4cm 1cm 1cm;
+   			text-align:justify;
+   		}
+
+		h1 {
+    		margin: 2cm 4cm 0.2cm 1cm;
+    		color: #16345C
+    	}
+
+    	h2 {
+    		margin: 2cm 4cm 0.2cm 1cm;
+    	}
+
+		ul {
+    		margin: 2cm 4cm 0.2cm 1cm;
+    	}
+
+		ol {
+    		margin: 2cm 4cm 0.2cm 1cm;
+   		} 
+    	
+    	select {
+    		margin: 2cm 4cm 0.2cm 1cm;
+   		} 
+
+    	d3-tip {
+    		line-height: 1;
+    		color: black;
+		}
+		script{
+    		margin: 2cm 4cm 0.2cm 1cm;
+    		position: absolute;
+   		} 
+
+		</style>
+
+	</head>
+
+		<body>
+
+		<h1> Project summary </h1>
+
+		<p> 
+
+		In this project I want to visualise the production linkages within the german economy using an Input-Output table. This project resulted as the final submission for the data vizualisation course in my graduate studies at the Barcelone Graduate School of Economics in the Data Science programm. <br>
+		The result is this website and an interactive graph in D3 with 65 nodes and around 3000 edges. The nodes represent the different production sectors of the german economy. The edges represent input provided from one industry to another. I'm going to work out corresponding sector importance using two different centrality concepts explained in detail later on. 
+		<br>
+		During an intership in my undegrade studies in economics I started working extensivaly in modeling regional econmics impacts using Input-Output tables. Subsequently, in my bacherlor thesis I investigated the network properties of the german economy ( centrality and clustering among others). With this project I want to add kind of a final component to the history of this topic. 
+
+		Code, data and related literature can be found on my <a href="https://github.com/FelixGSE/Data-Visualisation-2015">github</a> account. 
+
+		</p>
+
+		<h1> Data set and results </h1>
+
+		<p> 
+
+		As mentioned in the beginning the basis of this project is an Input-Output table published by <a href="http://ec.europa.eu/eurostat/de/web/esa-supply-use-input-tables/data/workbooks">[Eurostat, 2014]</a>. It is going back to economic nobel prize winner Wasiliy leontief and is nowadays a standardised tool in economic analysis. All countries within the european union are obliged to collect the data and publish it on a yearly basis. In more detail it displays the amount of input provided from one sector to another within one year expressed in monetary terms. ( e.g. steel industry provided 100 million euros as input to the car industry ). This table can seen as weighted directed graph. Using that fact we can workout several properties of this network. 
+
+		</p> 
+
+		<h2> The challenge </h2>
+
+		<p>
+
+		The In the context of social an economic networks there were proposed numerosly centrality concepts to work out important nodes in a network ( most prominent are e.g closeness centrality, betweenes centrality, etc.). There are especially two challanges, which make former centrality concepts not directly applicable.
+
+		<ol> 
+			<li> The graph is weighted 
+			<li> The graph is almost fully connected and has loops
+		</ol> 
+		
+		</p> 
+
+		<p>
+
+		To work out centrality in such a network [Bloechl et al., 2010] and [Bloechl et al., 2011] proposed two centrality concepts based random walks. They provide Matlab implementation (<a href="http://www.helmholtz-muenchen.de/icb/software/input-output-networks/index.html">here</a>). Within this project I implemented both in R to make it available for open source users.
+
+		</p> 
+
+		<p> 
+		The 
+
+		$$ \begin{array}{rcll}
+		x &=& {-b \pm \sqrt{b^2-4ac} \over 2a} \\
+		a &=& 2
+		\end{array} $$
+
+		</p>
+
+
+		<p> 
+		
+		This graph combines a decent amount of information of the network. The plot shows all edges on purpose to illustrate the interconnectness of the network. Scrolling over the nodes shows a summary with intersting results for each sector, such as employment, number of edges ect. With the dropdown menu, the user can rescale the nodes of the graph according to their importance in the economy. 
+		
+		</p>
+
+		<p> 
+		
+		</p>
+
+		<select onchange="change(this)">
+			<option value="nos"> No Scaling </option>
+  			<option value="clo"> Random Walk Closeness Centrality </option>
+  			<option value="cou"> Random Walk Counting Centrality  </option>
+		</select>
+
+	
+		<center>
+
+		<script type="text/javascript">
+
+		// Default values for plot
+		change('nos')
+
+		// Update function for dropdown menu
+		function change(centrality) {
+
+  			update(centrality.value)
+
+		}
+
+		// Update function 
+		function update(nodesize) {
+
+			// Set current nodesize variable 
+			var current = nodesize;
+
+			// Delete old graph
+			d3.selectAll('svg').remove();
+
+			//Width and height
+			var w = 600;
+			var h = 600;
+		
+			//Initialize a default force layout, using the nodes and edges in dataset
+			var force = d3.layout.force()
+							 .nodes(dataset.nodes)
+							 .links(dataset.edges)
+							 .size([w, h])
+							 .linkDistance([400])
+							 .charge([10])
+							 .gravity([10])
+							 .start();
+			
+			//Create SVG element
+			var svg = d3.select("body")
+						.append("svg")
+						.attr("width",  w)
+						.attr("height", h);
+			
+			// Add mouseover
+			var tip = d3.tip()
+				.attr('class', 'd3-tip')
+				.offset([-10, 0])
+				.html(function (d) {
+			    return  [
+			    		 "<b>" + d.name  + "</b>" + "<br>" +
+			    		 "Employment: " + d.em + "" + "<br>" +
+			    		 "Value Added: " + d.va + "" + "<br>" +
+			    		 "Final Demand: " + d.fd + "" + "<br>"
+			    		 ] ;
+				})
+			svg.call(tip);
+			
+			//Create edges as lines
+			var edges = svg.selectAll("line")
+				.data(dataset.edges)
+				.enter()
+				.append("line")
+				.style("marker-end",  "url(#suit)") //Added 
+				.style("stroke", "#808080")
+				.style("stroke-width", 1)
+				.style("stroke-opacity", 0.1);
+
+			// Add arrow heads 
+			/*
+			svg.append("defs").selectAll("marker")
+			    .data(["suit", "licensing", "resolved"])
+			  	.enter().append("marker")
+			    .attr("id", function(d) { return d; })
+			    .attr("viewBox", "0 -5 10 10")
+			    .attr("refX", 25)
+			    .attr("refY", 0)
+			    .attr("markerWidth", 6)
+			    .attr("markerHeight", 6)
+			    .attr("orient", "auto")
+			  	.append("path")
+			    .attr("d", "M0,-5L10,0L0,5 L10,0 L0, -5")
+			    .style("stroke", "#808080")
+			    .style("opacity", "0.1");
+			// Source: [Raper, 2014]
+			*/
+
+			//Create nodes as circles 
+			var nodes = svg.selectAll("circle")
+				.data(dataset.nodes)
+				.enter()
+				.append("circle")
+				// Update radius
+				.attr("r", function(d) { 
+				if( current == "clo" ) {
+					return d.clo;
+				} else if ( current == "cou" ) {
+					return d.cou;
+				} else {
+					return 10;
+				}})
+				.style("fill", function(d, i) {
+					return '#16345C';
+				})
+	  			.on("click", function(d) {
+	  			   	console.log("Name: " + d.name);
+	  			})
+	    		.on( 'mouseover', tip.show )
+				.on( 'mouseout',  tip.hide )
+				;
+	  		
+			//Every time the simulation "ticks", this will be called
+			force.on("tick", function() {
+
+				edges.attr("x1", function(d) { return d.source.x; })
+					 .attr("y1", function(d) { return d.source.y; })
+					 .attr("x2", function(d) { return d.target.x; })
+					 .attr("y2", function(d) { return d.target.y; });
+				
+				nodes.attr("cx", function(d) { return d.x; })
+					 .attr("cy", function(d) { return d.y; });
+		
+			});
+
+	}
+
+	</script>
+	</center>
+
+	<h1> References </h1>
+
+	<p> 
+
+	<b>[Bloechl et al., 2010]</b>  <span style="display:inline-block; width: 40px;"></span> Bloechl, F., Fisher, E. O., and Theis, F. (2010). Which Sectors of a Modern Economy are most Central? CESifo Working Paper Series, (3175).
+	<br>
+	<br>
+	<b>[Bloechl et al., 2011]</b> Bloechl, F., Theis, F. J., Vega-Redondo, F., and Fisher, E. O. (2011). Vertex Centralities in Input-Output Networks, Reveal the Structure of Modern Economies. Phys. Rev. E, 83 (4)
+	<br>
+	<br>
+	<b>[Eurostat, 2014]</b> Eurostat (2014). ESVG Aufkommens-, Verwendungs- und Input-Output Tabellen, Datenzugang nach Laendern. Online: <a href="http://ec.europa.eu/eurostat/de/web/esa-supply-use-input-tables/data/workbooks">here</a> , Download: 05.11.2014.
+	<br>
+	<br>
+	<b>[Raper, 2014]</b> Raper, Simon (2014). An A to Z of extra features for the D3 forece layout, Online:  
+	<a href="http://www.coppelia.io/2014/07/an-a-to-z-of-extra-features-for-the-d3-force-layout/">here</a>
+	<br>
+	<br>
+	<b> [Miller and Blair, 2009]</b> Miller, R. and Blair, P. (2009). Input-Output Analysis: Foundations and Extensions. Cambridge University Press, Cambridge.
+
+	</p>
+
+	</body>
+
+
+	<footer> <center> <p style=" border-top-style: solid;"> Felix Gutmann / BGSE / Programm: Data Science / Course: 14D007 Data Visualization / April 2016 </p> </center> </footer>
+
+</html>

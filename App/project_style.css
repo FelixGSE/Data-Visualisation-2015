@@ -1,0 +1,29 @@
+body {
+    background: #222;
+    color: white;
+    font-family: "HelveticaNeue-Light"; 
+    font-size: 18px;
+    }
+    .content {
+    width: 960 px;
+    display: block;
+    margin: 400px ;
+    padding-top: 1000px;
+    }
+
+p  {
+   margin: 2cm 4cm 1cm 1cm;
+   text-align:justify;
+   }
+
+h1 {
+    margin: 2cm 4cm 0.2cm 1cm;
+    }
+
+ul {
+    margin: 2cm 4cm 0.2cm 1cm;
+    }
+
+ol {
+    margin: 2cm 4cm 0.2cm 1cm;
+    } 
