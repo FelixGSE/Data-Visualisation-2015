@@ -17,7 +17,7 @@
 rm(list = ls())
 
 ### Load data
-setwd('/Users/felix/Documents/GSE/Term 2/14D007 Data Visualization/Project/Literature and data/Raw_data/')
+setwd('/Users/felix/Documents/GSE/Term 2/14D007 Data Visualization/Project/Data-Visualisation-2015/Literature and data/raw_data/')
 iot          <- read.csv( 'iot_clean.csv', sep = ';', header = FALSE )
 sector       <- read.csv( 'product_groups_clean.csv', sep = ';', header = FALSE )
 value.added  <- read.csv( 'value_added_clean.csv', sep = ';', header = FALSE )
@@ -29,7 +29,7 @@ final.demand <- read.csv( 'final_demand_clean.csv',sep = ';',header=FALSE )
 options( useFancyQuotes = FALSE )
 
 ### Initialize auxilliary functions
-setwd('/Users/felix/Documents/GSE/Term 2/14D007 Data Visualization/Project/Analysis/')
+setwd('/Users/felix/Documents/GSE/Term 2/14D007 Data Visualization/Project/Data-Visualisation-2015/Analysis/')
 source('centrality_functions.R')
 
 ################################################################################
@@ -147,7 +147,7 @@ graph  <- noquote( c( open , node.list , bridge , edge.list , close ) )
 ################################################################################
 
 # Reset working directory for output
-setwd( '/Users/felix/Documents/GSE/Term 2/14D007 Data Visualization/Project/App/data/' )
+setwd( '/Users/felix/Documents/GSE/Term 2/14D007 Data Visualization/Project/Data-Visualisation-2015/Literature and data/web_data/' )
 
 # Save data to HD
 write( graph , 'graph_data.js' )

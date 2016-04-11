@@ -16,14 +16,16 @@
 
 random.walk.closeness.centrality <- function( A ){
   
+  # Get dimensions and initialize H matrix
   N <- nrow( A )
   H <- matrix( 0, nrow = N, ncol = N )
+  # Intialize A and I 
   A <- diag( N ) - solve( diag( colSums( t(A) ) ) ) %*% A
   I <- solve( A[2:N,2:N] )
   
   for( i in 1:N ){
     
-    
+    # Compute current replacement indices
     ifelse( ( i - 1 ) == 0 ,
             index01 <- c( (i+1):N ),
             ifelse( i == N, 
@@ -38,9 +40,10 @@ random.walk.closeness.centrality <- function( A ){
     )
     
     
-    
+    # Update H
     H[index01,i] <- I %*% rep(1, ( N - 1 ) )
     
+    # Compute next inverse by Sherman–Morrison
     if( i < N ){
       
       u   <- A[ index02, i  ] - A[ index01, (i+1) ]
@@ -59,8 +62,10 @@ random.walk.closeness.centrality <- function( A ){
     }
   }
   
+  # Compute final centrality
   final.result <- N / colSums(H) 
   
+  # Return final result
   return( final.result )
   
 }
