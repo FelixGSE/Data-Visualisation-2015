@@ -6,9 +6,11 @@
 
 		<meta charset="utf-8">
 
-		<title> Network Structure of the German economy </title>
+		<title> The German production network </title>
 
-		<div id = "header"><h1 style="color:white;">Reveal the structure of the german economy </h1></div>
+		<h1> Visualizing the German production network </h1>
+		<hr style="margin-bottom:0px;" >
+		<p tyle="margin-top:0px; font-size:10px;"> <i> Felix Gutmann / BGSE / Programm: Data Science / Course: 14D007 Data Visualization / April 2016 </i> </p> 
 
 		<!-- Load D3 -->	
 		<script type="text/javascript" src="d3/d3.v3.js"></script>
@@ -18,27 +20,33 @@
 		<script type="text/x-mathjax-config"> MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
 		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-		<!-- Load graph data and centrality data -->
-		<script type="text/javascript" src="data/graph_data.js"></script>
+		<!-- Load graph and centrality data -->
+		<script type="text/javascript" src="Literature and data/web_data/graph_data.js"></script>
 
-		<!-- Styling -->
+		<!-- Load Styling -->
 		<style type="text/css">
 
 		#header  {
-			margin: 40cm 0cm 0cm 1cm;
+			margin-top: 	  0px;
+    		margin-bottom:   50px;
+    		margin-right: 	  0px;
+    		margin-left: 	 80px;
 			background-image: url("background.png");
-			padding-top: 20px;
-			padding-left: 0px;
-			padding-right: 20px;
-			font-size: %;
-			text-align:left;
-			width:1000px;
-			text-align:left;
-			float:center;
+			padding-top:   50px;
+			padding-left:   0px;
+			padding-right:  0px;
+			padding-bottom: 10px;
+			font-size:  	  %;
+			text-align:	   left;
+			width:		 990px;
+			text-align:	   left;
+			float:		 center;
        	}
 
 		body {
-			background: #FFF;
+    		margin-left: 	 70px;
+			background: 	 #FFF;
+			padding-bottom:  20px;
 			color: black;
 			font-family: "HelveticaNeue-Light"; 
 			font-size: 18px;
@@ -51,120 +59,95 @@
     		padding-top: 1000px;
     		}
 
-		p  {
-   			margin: 2cm 4cm 1cm 1cm;
-   			text-align:justify;
-   		}
-
-		h1 {
-    		margin: 2cm 4cm 0.2cm 1cm;
+    	h1 {
+    		margin-top:    50px;
+    		margin-bottom: 0px;
+    		margin-right: 150px;
+    		margin-left: 80px;
     		color: #16345C
     	}
 
     	h2 {
-    		margin: 2cm 4cm 0.2cm 1cm;
+    		margin-top:    20px;
+    		margin-bottom: 20px;
+    		margin-right: 150px;
+    		margin-left: 80px;
+
     	}
 
+		p  {
+    		margin-right: 150px;
+    		margin-left: 80px;
+   			text-align:justify;
+   		}
+
 		ul {
-    		margin: 2cm 4cm 0.2cm 1cm;
+    		margin-top: 10px;
+    		margin-bottom: 10px;
+    		margin-right: 150px;
+    		margin-left: 80px;
     	}
 
 		ol {
-    		margin: 2cm 4cm 0.2cm 1cm;
+    		margin-top: 	10px;
+    		margin-bottom: 10px;
+    		margin-right: 150px;
+    		margin-left: 80px;
    		} 
     	
     	select {
-    		margin: 2cm 4cm 0.2cm 1cm;
+    		margin-right: 150px;
+    		margin-left: 80px;
    		} 
 
     	d3-tip {
     		line-height: 1;
     		color: black;
 		}
-		script{
-    		margin: 2cm 4cm 0.2cm 1cm;
+		script {
+    		margin-right: 150px;
+    		margin-left: 80px;
     		position: absolute;
    		} 
 
+   		hr {
+   			margin-right: 150px;
+    		margin-left: 80px;
+   		}
 		</style>
 
 	</head>
 
-		<body>
+		<body link="#16345C" vlink="#632523">
 
-		<h1> Project summary </h1>
+		<h2> Project Summary </h2>
 
-		<p> 
-
-		In this project I want to visualise the production linkages within the german economy using an Input-Output table. This project resulted as the final submission for the data vizualisation course in my graduate studies at the Barcelone Graduate School of Economics in the Data Science programm. <br>
-		The result is this website and an interactive graph in D3 with 65 nodes and around 3000 edges. The nodes represent the different production sectors of the german economy. The edges represent input provided from one industry to another. I'm going to work out corresponding sector importance using two different centrality concepts explained in detail later on. 
+		<p > 
+		In this project I visualized the production network of the German economy using an Input-Output table. It is the final submission for the data visualization class of my graduate studies in Data Science at the Barcelone Graduate School of Economics. <br>
+		The project resulted in this website with an interactive graph consisting of 65 nodes with around 3000 edges. The nodes represent different production sectors of the German economy. An edge indicates that input is provided from one sector to another. I'm using two centrality concepts designed for such networks to work out corresponding sector importance, which are used to rescale the nodes of the production network and which are explained in more detail later on. The embeded plot was written in D3. <br>
+		The motivation for this project is closely related to the final paper I wrote for my undergraduate studies in economics. Among other things I investigated the network properties of the German economy. Naturally the visualizing aspect in a research paper is fairly limitited. Thus, I see this project as the missing visual extension to my previous research. 
 		<br>
-		During an intership in my undegrade studies in economics I started working extensivaly in modeling regional econmics impacts using Input-Output tables. Subsequently, in my bacherlor thesis I investigated the network properties of the german economy ( centrality and clustering among others). With this project I want to add kind of a final component to the history of this topic. 
-
-		Code, data and related literature can be found on my <a href="https://github.com/FelixGSE/Data-Visualisation-2015">github</a> account. 
-
+		<br>
+		All related code, used data and literature can be found on my <a href="https://github.com/FelixGSE/Data-Visualisation-2015">github account</a>. 
 		</p>
 
-		<h1> Data set and results </h1>
+		<h2> Input-Output Graph for the German Economy </h2>
+		<hr>
 
-		<p> 
-
-		As mentioned in the beginning the basis of this project is an Input-Output table published by <a href="http://ec.europa.eu/eurostat/de/web/esa-supply-use-input-tables/data/workbooks">[Eurostat, 2014]</a>. It is going back to economic nobel prize winner Wasiliy leontief and is nowadays a standardised tool in economic analysis. All countries within the european union are obliged to collect the data and publish it on a yearly basis. In more detail it displays the amount of input provided from one sector to another within one year expressed in monetary terms. ( e.g. steel industry provided 100 million euros as input to the car industry ). This table can seen as weighted directed graph. Using that fact we can workout several properties of this network. 
-
-		</p> 
-
-		<h2> The challenge </h2>
-
-		<p>
-
-		The In the context of social an economic networks there were proposed numerosly centrality concepts to work out important nodes in a network ( most prominent are e.g closeness centrality, betweenes centrality, etc.). There are especially two challanges, which make former centrality concepts not directly applicable.
-
-		<ol> 
-			<li> The graph is weighted 
-			<li> The graph is almost fully connected and has loops
-		</ol> 
-		
-		</p> 
-
-		<p>
-
-		To work out centrality in such a network [Bloechl et al., 2010] and [Bloechl et al., 2011] proposed two centrality concepts based random walks. They provide Matlab implementation (<a href="http://www.helmholtz-muenchen.de/icb/software/input-output-networks/index.html">here</a>). Within this project I implemented both in R to make it available for open source users.
-
-		</p> 
-
-		<p> 
-		The 
-
-		$$ \begin{array}{rcll}
-		x &=& {-b \pm \sqrt{b^2-4ac} \over 2a} \\
-		a &=& 2
-		\end{array} $$
-
-		</p>
-
-
-		<p> 
-		
-		This graph combines a decent amount of information of the network. The plot shows all edges on purpose to illustrate the interconnectness of the network. Scrolling over the nodes shows a summary with intersting results for each sector, such as employment, number of edges ect. With the dropdown menu, the user can rescale the nodes of the graph according to their importance in the economy. 
-		
-		</p>
-
-		<p> 
-		
-		</p>
-
+		<!-- Create dropdown menu -->
 		<select onchange="change(this)">
 			<option value="nos"> No Scaling </option>
   			<option value="clo"> Random Walk Closeness Centrality </option>
   			<option value="cou"> Random Walk Counting Centrality  </option>
 		</select>
 
-	
-		<center>
-
+		<!-- Initialize UNIQUE div to append plot always on the correct position on the page -->
+		<div id="svghere" style="margin-left: 100px;  "></div> 
+		
+<!-- HERE BEGINS THE CODE FOR THE PLOT --> <!-- HERE BEGINS THE CODE FOR THE PLOT --> <!-- HERE BEGINS THE CODE FOR THE PLOT --> 
 		<script type="text/javascript">
 
-		// Default values for plot
+		// Initialize plot with no scaling
 		change('nos')
 
 		// Update function for dropdown menu
@@ -184,8 +167,8 @@
 			d3.selectAll('svg').remove();
 
 			//Width and height
-			var w = 600;
-			var h = 600;
+			var w = 1000;
+			var h = 550;
 		
 			//Initialize a default force layout, using the nodes and edges in dataset
 			var force = d3.layout.force()
@@ -198,25 +181,53 @@
 							 .start();
 			
 			//Create SVG element
-			var svg = d3.select("body")
+			var svg = d3.select("#svghere")
 						.append("svg")
 						.attr("width",  w)
 						.attr("height", h);
 			
-			// Add mouseover
+			// Add mouseover, Source: [Raper, 2014]
 			var tip = d3.tip()
 				.attr('class', 'd3-tip')
 				.offset([-10, 0])
 				.html(function (d) {
 			    return  [
 			    		 "<b>" + d.name  + "</b>" + "<br>" +
-			    		 "Employment: " + d.em + "" + "<br>" +
-			    		 "Value Added: " + d.va + "" + "<br>" +
-			    		 "Final Demand: " + d.fd + "" + "<br>"
+			    		 "Employment (in 1000 persons): " + d.em + "" + "<br>" +
+			    		 "Value Added: (in m. Euro): " + d.va + "" + "<br>" +
+			    		 "Final Demand (in m. Euro): " + d.fd + "" + "<br>"
 			    		 ] ;
 				})
 			svg.call(tip);
 			
+			// Add pinning event, Source: [Raper, 2014]
+			var node_drag = d3.behavior.drag()
+        		.on("dragstart", dragstart)
+        		.on("drag", dragmove)
+        		.on("dragend", dragend);
+
+		    function dragstart(d, i) {
+		        force.stop() 
+		    }
+
+		    function dragmove(d, i) {
+		        d.px += d3.event.dx;
+		        d.py += d3.event.dy;
+		        d.x += d3.event.dx;
+		        d.y += d3.event.dy;
+		    }
+
+		    function dragend(d, i) {
+		        d.fixed = true; 
+		        force.resume();
+		    }
+
+		    function releasenode(d) {
+		        d.fixed = false; 
+		        force.resume();
+		    }
+
+
 			//Create edges as lines
 			var edges = svg.selectAll("line")
 				.data(dataset.edges)
@@ -224,10 +235,10 @@
 				.append("line")
 				.style("marker-end",  "url(#suit)") //Added 
 				.style("stroke", "#808080")
-				.style("stroke-width", 1)
+				.style("stroke-width", 0.5)
 				.style("stroke-opacity", 0.1);
 
-			// Add arrow heads 
+			// Add arrow heads - THIS IS OMITTED TO SPEED UP THE PLOT, Source: [Raper, 2014]
 			/*
 			svg.append("defs").selectAll("marker")
 			    .data(["suit", "licensing", "resolved"])
@@ -251,6 +262,7 @@
 				.data(dataset.nodes)
 				.enter()
 				.append("circle")
+				.attr('fill-opacity', 0.6)
 				// Update radius
 				.attr("r", function(d) { 
 				if( current == "clo" ) {
@@ -268,6 +280,9 @@
 	  			})
 	    		.on( 'mouseover', tip.show )
 				.on( 'mouseout',  tip.hide )
+				.call(force.drag)
+				.on('dblclick', releasenode)
+				.call(node_drag)
 				;
 	  		
 			//Every time the simulation "ticks", this will be called
@@ -286,32 +301,66 @@
 	}
 
 	</script>
-	</center>
 
-	<h1> References </h1>
+<!-- HERE ENDS THE CODE FOR THE PLOT --> <!-- HERE ENDS THE CODE FOR THE PLOT --> <!-- HERE ENDS THE CODE FOR THE PLOT --> 
+
+	<hr>
+
+		<h2> Data description and analysis results </h2>
+
+		<p> 
+
+		As mentioned before the underlying data of this project is an Input-Output table. It is a symmetric 65x65 matrix displaying the amount of (monetary-) production input provided from one sector of an economy to another (e.g. steel industry provided 100 million Euros as production input to the car industry). Data are collected over one year and expressed in basic prices (meaning without raised taxes to ensure comparability among countries). The table is mainly used in context of Input-Output analysis to estimate effects of economic shocks (for an extensive introduction see e.g. [Miller and Blair, 2009]).<br>  
+		Apart from that the table has natural interpretation as a weighted and directed graph. We can use that fact to work out several properties of this network, such as node centrality. In context of an Input-Output table there are in particular two challenges in evaluating centrality. 
+		<ol> 
+			<li> The graph is weighted.
+			<li> The graph is almost fully connected.
+			<li> The graph has a lot of loops (self connectness).
+		</ol> 
+		</p> 
+
+		<p> 
+		Two concepts are proposed by [Bloechl et al., 2010] and [Bloechl et al., 2011] applicable to such networks. Both concepts are based on random walks. Following that, the first meassure is <i> Random Walk Closeness Centrality </i>. Broadly speaking it meassures how fast a certain note is affected by an economic shock. On the other hand <i> Random Walk Counting Centrality </i> provides a measure on how long an economic shock affects a sector.<br> 
+		Both concepts find a priori expected results. For example it indentifies the car industry as the most central node in the german production network.<br> 
+	 	The authors provide a <a href="http://www.helmholtz-muenchen.de/icb/software/input-output-networks/index.html">Matlab implementation</a> for computing both measures. Within this project I implemented both <a href="https://github.com/FelixGSE/Data-Visualisation-2015/tree/master/Analysis">functions in R</a> to make it available for open source use.
+		</p> 
+
+		<h2> Some final remarks on the plot - Or why the plot looks like it does </h2>
+		<p> 
+		I think the graph is a neat tool to combine and display a decent amount of information of the network. I decided to show all edges on purpose to illustrate the problem of high interconnectness. Scrolling over the nodes and showing additional information provides an extra possiblity to show information on demand of the user. The dropdown menu allows the user to rescale the nodes of the graph according to both introduced importance meassures to get a feeling for sector importance. I also added a pinning event, so the user can fix a node of interest (a double click releases the node again). I want to mention [Raper, 2014] as a extensive overview of additional force directed graph events. <br> 
+		Also, there are plenty of possible extensions and the complexity of displayed information is very flexible. The complexity level of displayed information can easily be adjusted to different audiences. For a more research orientied audience one could add more information like output-, fiscal- and employment multipliers. Also one could use different colors for each node to add another dimension of information to the plot (e.g. displaying different clusters etc.). For a more general audience, e.g. in a business newspaper one could add information, which are more intuitive for non research people. <br> 	
+		Despite the fact the graph is directed, I did not add arrows to the graph. I think it is not contributing extra information and disregarding them has the advantage of speeding up the code significantly (however the code to add them is added to the javascript as a comment). Since almost every node has a loop these are also not shown.<br> 
+		</p>
+
+	<span style="display:inline-block; height: 20px;"></span>
+
+	<h2> References </h2>
+
+	<span style="display:inline-block; height: 20px;"></span>
 
 	<p> 
 
-	<b>[Bloechl et al., 2010]</b>  <span style="display:inline-block; width: 40px;"></span> Bloechl, F., Fisher, E. O., and Theis, F. (2010). Which Sectors of a Modern Economy are most Central? CESifo Working Paper Series, (3175).
+	<b>[Bloechl et al., 2010]</b> Bloechl, F., Fisher, E. O., and Theis, F. (2010). Which Sectors of a Modern Economy are most Central? CESifo Working Paper Series, (3175).
 	<br>
 	<br>
 	<b>[Bloechl et al., 2011]</b> Bloechl, F., Theis, F. J., Vega-Redondo, F., and Fisher, E. O. (2011). Vertex Centralities in Input-Output Networks, Reveal the Structure of Modern Economies. Phys. Rev. E, 83 (4)
 	<br>
 	<br>
-	<b>[Eurostat, 2014]</b> Eurostat (2014). ESVG Aufkommens-, Verwendungs- und Input-Output Tabellen, Datenzugang nach Laendern. Online: <a href="http://ec.europa.eu/eurostat/de/web/esa-supply-use-input-tables/data/workbooks">here</a> , Download: 05.11.2014.
+	<b>[Eurostat, 2014]</b> Eurostat (2014). ESA Supply, Use and Input-Output-Tables, Online: <a href="http://ec.europa.eu/eurostat/de/web/esa-supply-use-input-tables/data/workbooks">here</a> , Download: 05.11.2014.
+	<br>
+	<br>
+	<b> [Miller and Blair, 2009]</b> Miller, R. and Blair, P. (2009). Input-Output Analysis: Foundations and Extensions. Cambridge University Press, Cambridge.
 	<br>
 	<br>
 	<b>[Raper, 2014]</b> Raper, Simon (2014). An A to Z of extra features for the D3 forece layout, Online:  
 	<a href="http://www.coppelia.io/2014/07/an-a-to-z-of-extra-features-for-the-d3-force-layout/">here</a>
-	<br>
-	<br>
-	<b> [Miller and Blair, 2009]</b> Miller, R. and Blair, P. (2009). Input-Output Analysis: Foundations and Extensions. Cambridge University Press, Cambridge.
-
 	</p>
+
+	<span style="display:inline-block; height: 40px;"></span>
 
 	</body>
 
-
-	<footer> <center> <p style=" border-top-style: solid;"> Felix Gutmann / BGSE / Programm: Data Science / Course: 14D007 Data Visualization / April 2016 </p> </center> </footer>
+	<hr style="margin-bottom:0px;" >
+		<p tyle="margin-top:0px; font-size:10px;"> <i> Felix Gutmann / BGSE / Programm: Data Science / Course: 14D007 Data Visualization / April 2016 </i> </p>
 
 </html>
