@@ -11,7 +11,7 @@ Problem set 2:
 
 - Some maps displaying different indices for different countries
 
-Problem Set 3:
+Problem set 3:
 
 - PCA Analysis and corresponding visualization
 
